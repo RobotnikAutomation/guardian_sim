@@ -1,4 +1,4 @@
 guardian_sim
 ============
 
-ROS packages for the mobile robot Guardian
+ROS packages for the mobile robot Guardian (Simulation)
