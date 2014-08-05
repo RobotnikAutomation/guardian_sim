@@ -1,0 +1,8 @@
+<stack>
+  <description brief="guardian_sim">guardian_sim</description>
+  <author>Maintained by Robotnik</author>
+  <license></license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/guardian_sim</url>
+  <depend stack="ros" />
+</stack>

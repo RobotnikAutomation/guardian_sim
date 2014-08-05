@@ -1,0 +1,22 @@
+<package>
+  <name>guardian_description</name>
+  <version>0.1.0</version>
+  <description>guardian_description</description>
+  <maintainer email="info@robotnik.es">Robotnik</maintainer>
+
+  <author>>Robotnik Automation SLL</author>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/guardian_description</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>gazebo</build_depend>
+
+  <run_depend>gazebo</run_depend>
+
+  <export>
+	<gazebo gazebo_media_path="${prefix}"/>
+  </export>
+
+</package>
+

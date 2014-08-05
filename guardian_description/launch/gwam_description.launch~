@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- send guardian.urdf to param server -->
+  <param name="robot_description" textfile="$(find guardian_description)/urdf/gwam_ume.urdf" />
+</launch>

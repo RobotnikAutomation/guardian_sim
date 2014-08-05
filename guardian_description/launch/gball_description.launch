@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- send guardian.urdf to param server -->
+	<!-- En funcion de si se trabaja con brazo o sin el elegir gball_ita.urdf o guardian_ita.urdf respectivamente -->
+	<param name="robot_description" textfile="$(find guardian_description)/urdf/gball_ita.urdf" />
+  <!--<param name="robot_description" textfile="$(find guardian_description)/urdf/guardian_ita.urdf" /> -->
+</launch>

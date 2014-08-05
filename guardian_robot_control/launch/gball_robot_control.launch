@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- General control parameter file -->
+  <rosparam command="load" file="$(find guardian_robot_control)/config/guardian_robot_control.yaml" />
+
+  <!-- Model specific parameter file -->
+  <rosparam command="load" file="$(find guardian_robot_control)/config/gball.yaml"/>
+
+  <node name="guardian_robot_control" pkg="guardian_robot_control" type="guardian_robot_control" output="screen"/>
+  
+</launch>
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="wam_arm_gazebo" params="name">
+
+	<!--gazebo>
+		<plugin name="ros_control" filename="libgazebo_ros_control.so">
+		<robotNamespace>/wam</robotNamespace>
+		<controlPeriod>0.002</controlPeriod>
+		<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+		</plugin>
+	</gazebo-->
+		
+	<gazebo reference="${name}_1_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_2_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_3_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_4_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_5_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_6_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+
+	<gazebo reference="${name}_7_link">
+		<material>Gazebo/White</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+	
+
+  </xacro:macro>
+
+</robot>

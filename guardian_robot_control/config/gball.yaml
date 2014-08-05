@@ -1,0 +1,16 @@
+guardian_robot_control:
+
+     model: gball
+
+      # kinematic parameters 
+     guardian_wheel_diameter: 0.4 
+     guardian_d_tracks_m: 1.00
+     
+      # omni L=W for swerve drive simulation !
+      # Length 
+     guardian_wheelbase: 0.570
+      # Width 
+     guardian_trackwidth: 0.570 
+
+
+     publish_odom_tf: true 

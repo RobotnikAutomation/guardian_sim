@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<robot  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       name="torso" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+	<xacro:include filename="$(find robotnik_wam_description)/urdf/wam.gazebo.xacro" />
+	
+ 	<xacro:property name="joint_1_upper_limit" value="2.967059678" /> <!-- 170º -->
+	<xacro:property name="joint_1_lower_limit" value="-2.967059678" /> <!-- -170º -->
+	<xacro:property name="joint_2_upper_limit" value="1.919862144" /> <!-- 110º -->
+	<xacro:property name="joint_2_lower_limit" value="-1.919862144" /> <!-- -110º -->
+	<xacro:property name="joint_3_upper_limit" value="2.705260294" /> <!-- 155º -->
+	<xacro:property name="joint_3_lower_limit" value="-2.705260294" /> <!-- -155º -->
+	<xacro:property name="joint_4_upper_limit" value="2.967059678" /> <!-- 170º -->
+	<xacro:property name="joint_4_lower_limit" value="-2.967059678" /> <!-- -170º -->
+	<xacro:property name="joint_5_upper_limit" value="2.51327408" /> <!-- 140º -->
+	<xacro:property name="joint_5_lower_limit" value="-2.51327408" /> <!-- -140º -->
+	<xacro:property name="joint_6_upper_limit" value="2.967059678" /> <!-- 170º -->
+	<xacro:property name="joint_6_lower_limit" value="-2.967059678" /> <!-- -170º -->
+	<xacro:property name="joint_1_max_vel" value="1.25663706144" /> <!-- 72º/s -->
+	<xacro:property name="joint_2_max_vel" value="1.25663706144" /> <!-- 72º/s -->
+	<xacro:property name="joint_3_max_vel" value="1.25663706144" /> <!-- 72º/s -->
+	<xacro:property name="joint_4_max_vel" value="1.25663706144" /> <!-- 72º/s -->	
+	<xacro:property name="joint_5_max_vel" value="1.57079632679" /> <!-- 90º/s -->	
+	<xacro:property name="joint_6_max_vel" value="1.57079632679" /> <!-- 90º/s -->
+	
+  <xacro:macro name="wam_arm" params="parent name *origin">
+
+	 <link name="${name}_0_link">
+		 <inertial>
+			  <mass value="0.01"/>
+			  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+			  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+		 </inertial>
+	</link>
+	<!-- joint between base_link and arm_0_link -->
+    <joint name="${name}_0_joint" type="fixed" >
+      <insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}_0_link" />
+    </joint>
+ 
+    <link name="${name}_1_link">
+		<inertial>
+		  <mass value="2.3936"/>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam1.stl"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam1.stl"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+  
+	<joint name="${name}_1_joint" type="revolute">
+		<parent link="${name}_0_link"/>
+		<child link="${name}_1_link"/>
+		<origin xyz="0 0 0.186" rpy="0 0 0" />
+		<axis xyz="0 0 1"/>
+		<limit effort="30" lower="-2.6" upper="2.6" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	
+	<transmission name="${name}_1_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_1_joint_motor"/>
+		<joint name="${name}_1_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+	</transmission>	
+	
+	<link name="${name}_2_link">
+		<inertial>
+		  <origin rpy="0 0 0" xyz="0 0 0"/>
+		  <mass value="1.8487"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam2.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam2.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+  
+
+	<joint name="${name}_2_joint" type="revolute">
+		<parent link="${name}_1_link"/>
+		<child link="${name}_2_link"/>
+		<origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="30" lower="-2.0" upper="2.0" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_2_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_2_joint_motor"/>
+		<joint name="${name}_2_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!--<pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+	
+	
+	<link name="${name}_3_link">
+		<inertial>
+		  <mass value="0.43"/>
+		  <origin rpy="0 0 0" xyz="0 0 0.225"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam3.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam3.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+	
+	<joint name="${name}_3_joint" type="revolute">
+		<parent link="${name}_2_link"/>
+		<child link="${name}_3_link"/>
+		<origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="30" lower="-2.8" upper="2.8" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_3_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_3_joint_motor"/>
+		<joint name="${name}_3_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!-- <pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+	
+	<link name="${name}_4_link">
+		<inertial>
+		  <mass value="0.52"/>
+		  <origin rpy="0 0 0" xyz="-0.045 -0.15 0"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam4.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam4.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+
+	<joint name="${name}_4_joint" type="revolute">
+		<parent link="${name}_3_link"/>
+		<child link="${name}_4_link"/>
+		<origin rpy="-1.57079632679 0 0" xyz="0.045 0.0 0.55"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="35" lower="-0.9" upper="2.8" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_4_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_4_joint_motor"/>
+		<joint name="${name}_4_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!--<pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+
+	<link name="${name}_5_link">
+		<inertial>
+		  <origin rpy="0 0 0" xyz="0 0 0"/>
+		  <mass value="0.076675"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam5.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam5.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+  
+	<joint name="${name}_5_joint" type="revolute">
+		<parent link="${name}_4_link"/>
+		<child link="${name}_5_link"/>
+		<origin rpy="1.57079632679 0 0" xyz="-0.045 -0.3 0.0"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="30" lower="-4.8" upper="1.3" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_5_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_5_joint_motor"/>
+		<joint name="${name}_5_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!--  <pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+	
+	<link name="${name}_6_link">
+		<inertial>
+		  <origin rpy="0 0 0" xyz="0 0 0"/>
+		  <mass value="0.10695"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam6.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam6.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+	
+  
+	<joint name="${name}_6_joint" type="revolute">
+		<parent link="${name}_5_link"/>
+		<child link="${name}_6_link"/>
+		<origin rpy="-1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="30" lower="-1.6" upper="1.6" velocity="2.0"/>
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_6_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_6_joint_motor"/>
+		<joint name="${name}_6_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!--  <pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+
+	<link name="${name}_7_link">
+		<inertial>
+		  <origin rpy="0 0 0" xyz="0 0 0"/>
+		  <mass value="0.013925"/>
+		  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam7.stl" scale="1.0 1.0 1.0"/>
+		  </geometry>
+		  <material name="Grey">
+			<color rgba="0.75 0.75 0.75 1.0"/>
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+		  <geometry>
+			<mesh filename="package://robotnik_wam_description/meshes/wam7.stl" scale="1.0 1.0 1.0"/>
+			<!--                <box size="0.10 0.10 0.10"/> -->
+		  </geometry>
+		  <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+		</collision>
+	</link>
+
+	<joint name="${name}_7_joint" type="revolute">
+		<parent link="${name}_6_link"/>
+		<child link="${name}_7_link"/>
+		<origin rpy="1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="30" lower="-2.2" upper="2.2" velocity="2.0"/>
+		<!--  <safety_controller k_velocity="0.5"/>-->
+		<dynamics damping="100"/>
+	</joint>
+	<transmission name="${name}_7_transmission" type="pr2_mechanism_model/SimpleTransmission">
+		<actuator name="${name}_7_joint_motor"/>
+		<joint name="${name}_7_joint"/>
+		<mechanicalReduction>1</mechanicalReduction>
+		<motorTorqueConstant>1</motorTorqueConstant>
+		<!--<pulsesPerRevolution>90000</pulsesPerRevolution>-->
+	</transmission>
+
+	<link name="${name}_tcp_link"/>
+	<joint name="${name}_tcp_joint" type="fixed">
+		<parent link="${name}_7_link"/>
+		<child link="${name}_tcp_link"/>
+		<origin rpy="0 0 0" xyz="0.0 0.0 0.2"/>
+	</joint>
+
+	<!-- extensions -->
+    <xacro:wam_arm_gazebo name="${name}" />
+    
+  </xacro:macro>
+
+</robot>

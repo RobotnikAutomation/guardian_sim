@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot name="guardian" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+  <xacro:include filename="$(find guardian_description)/urdf/v7/guardian.urdf.xacro" /> 
+  
+  <!-- Robot Arm -->
+  <xacro:include filename="$(find lwa4p_description)/urdf/lwa4p.urdf.xacro"/>
+   
+  <link name="powerball_base_link">
+  </link>
+  <joint name="base_footprint_pb_joint" type="fixed">
+     <origin xyz="0.1950 0 0.223" rpy="0 0 0" />
+     <parent link="base_link"/>
+     <child link="powerball_base_link"/>
+  </joint>  
+
+  <!-- arm -->
+  <xacro:schunk_lwa4p name="arm" parent="powerball_base_link">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:schunk_lwa4p>
+
+
+
+</robot>
+

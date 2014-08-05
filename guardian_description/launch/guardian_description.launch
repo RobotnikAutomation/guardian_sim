@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+   <param name="robot_description"
+    command="$(find xacro)/xacro.py '$(find guardian_description)/urdf/v7/guardian.urdf.xacro'" />
+
+</launch>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam command="load" file="$(find guardian_robot_control)/config/guardian_robot_control.yaml" />
+
+  <rosparam command="load" file="$(find guardian_robot_control)/config/guardian.yaml"/>
+
+  <node name="guardian_robot_control" pkg="guardian_robot_control" type="guardian_robot_control" output="screen"/>
+  
+</launch>
+
+
