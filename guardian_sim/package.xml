@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>guardian_sim</name>
+  <version>0.1.0</version>
+  <description>The guardian_sim package. This package contains all the components to simulate the Guardian robot</description>
+
+
+  <maintainer email="rnavarro@robotnik.es">Román Navarro</maintainer>
+  <maintainer email="rguzman@robotnik.es">Roberto Guzmán</maintainer>
+  <maintainer email="mbeneto@robotnik.es">Marc Benetó</maintainer>
+
+  <author email="mbeneto@robotnik.es">Marc Benetó</author>
+  
+  <license>BSD</license>
+
+  <url type="website">http://wiki.ros.org/guardian_sim</url>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <run_depend>guardian_control</run_depend>
+  <run_depend>guardian_description</run_depend>
+  <run_depend>guardian_gazebo</run_depend>
+  <run_depend>guardian_joystick</run_depend>
+  <run_depend>guardian_robot_control</run_depend>
+  <run_depend>lwa4p_description</run_depend>
+  <run_depend>robotnik_wam_description</run_depend>
+
+
+  <export><metapackage/></export>
+
+</package>
