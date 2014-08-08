@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
     roscpp 
     sensor_msgs 
     geometry_msgs 
+    message_generation 
     )
     
 ## System dependencies are found with CMake's conventions
@@ -84,3 +85,4 @@ target_link_libraries(guardian_joystick
    ${catkin_LIBRARIES}
  )
 
+add_dependencies(guardian_joystick ${PROJECT_NAME}_generate_messages_cpp)
