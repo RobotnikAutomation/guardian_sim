@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="gball" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+<robot name="guardian_tracks" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
   <xacro:include filename="$(find guardian_description)/urdf/v7/guardian.gazebo" />
@@ -146,7 +146,7 @@
   </joint>
 
   <!-- BACK LEFT WHEEL (GREY) -->
-  <link name="back_left_wheel">
+  <!-- <link name="back_left_wheel">
     <inertial>
       <mass value="4.5" />
       <origin xyz="0 0 0" rpy="0 0 3.1416"/> 
@@ -169,13 +169,13 @@
      <joint name="joint_back_left_wheel" />
      <actuator name="joint_blw_motor">
 	    <hardwareInterface>EffortJointInterface</hardwareInterface>
-		<!-- hardwareInterface>VelocityJointInterface</hardwareInterface -->
+		hardwareInterface>VelocityJointInterface</hardwareInterface
         <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
-     	<!-- motorTorqueConstant>1</motorTorqueConstant -->
+     	motorTorqueConstant>1</motorTorqueConstant
      </actuator>
   </transmission>
 
-  <!-- BACK RIGHT WHEEL (BLACK) -->
+  BACK RIGHT WHEEL (BLACK)
   <link name="back_right_wheel">
     <inertial>
       <mass value="4.5" />
@@ -200,13 +200,13 @@
     <joint name="joint_back_right_wheel" />
     <actuator name="joint_brw_motor">
 	   <hardwareInterface>EffortJointInterface</hardwareInterface>
-       <!-- hardwareInterface>VelocityJointInterface</hardwareInterface -->
+       hardwareInterface>VelocityJointInterface</hardwareInterface
        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
-	   <!-- motorTorqueConstant>1</motorTorqueConstant -->
+	   motorTorqueConstant>1</motorTorqueConstant
     </actuator>
   </transmission>
 
-  <!-- FRONT LEFT WHEEL (GREY) -->
+  FRONT LEFT WHEEL (GREY)
   <link name="front_left_wheel">
     <inertial>
       <mass value="4.5" />
@@ -229,14 +229,14 @@
      <joint name="joint_front_left_wheel" />
      <actuator name="joint_flw_motor">
 	   <hardwareInterface>EffortJointInterface</hardwareInterface>
-       <!-- hardwareInterface>VelocityJointInterface</hardwareInterface -->
+       hardwareInterface>VelocityJointInterface</hardwareInterface
        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
-       <!-- motorTorqueConstant>1</motorTorqueConstant -->
+       motorTorqueConstant>1</motorTorqueConstant
      </actuator>     
   </transmission>
 
 
-  <!-- FRONT RIGHT WHEEL (GREY) -->
+  FRONT RIGHT WHEEL (GREY)
   <link name="front_right_wheel">
     <inertial>
       <mass value="4.5" />
@@ -260,14 +260,14 @@
      <joint name="joint_front_right_wheel" />
      <actuator name="joint_frw_motor">
 	   <hardwareInterface>EffortJointInterface</hardwareInterface>
-	   <!-- hardwareInterface>VelocityJointInterface</hardwareInterface -->    
+	   hardwareInterface>VelocityJointInterface</hardwareInterface    
        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
-       <!-- motorTorqueConstant>1</motorTorqueConstant -->
+       motorTorqueConstant>1</motorTorqueConstant
      </actuator>
-     <!-- motorTorqueConstant>1</motorTorqueConstant -->
+     motorTorqueConstant>1</motorTorqueConstant
   </transmission>
 
-
+ -->
 
   <!-- HOKUYO BACK SENSOR -->
   <joint name="hokuyo_back_laser_joint" type="fixed">
@@ -299,12 +299,35 @@
     </inertial>
   </link>
 
-  <!-- HOKUYO FRONTAL ROTATION -->
-  <joint name="hokuyo_frontal_laser_rotation_joint" type="revolute">
+
+  <joint name="laser_tilt_mount_joint" type="fixed">
      <axis xyz="0 1 0" />
      <origin xyz="0.46781 0 0.24299"/>
      <parent link="base_link"/>
-     <child link="hokuyo_frontal_laser_rotation_link"/>
+     <child link="laser_tilt_mount_link"/>
+     <limit effort="30" lower="-2.6" upper="2.6" velocity="2.0"/>
+	 <dynamics damping="100"/>
+  </joint>
+  <link name="laser_tilt_mount_link"></link>
+
+  <!--joint name="laser_tilt_mount_inverted_joint" type="fixed">
+     <axis xyz="0 1 0" />
+     <origin xyz="0 0 0" rpy="${PI} 0 0"/>
+     <parent link="laser_tilt_mount_link"/>
+     <child link="laser_tilt_mount_inverted_link"/>
+     <limit effort="30" lower="-2.6" upper="2.6" velocity="2.0"/>
+	 <dynamics damping="100"/>
+  </joint>
+  
+  <link name="laser_tilt_mount_inverted_link">  
+  </link-->
+  
+  <!-- HOKUYO FRONTAL ROTATION -->
+  <joint name="laser_tilt_joint" type="revolute">
+     <axis xyz="0 1 0" />
+     <origin xyz="0 0 0"/>
+     <parent link="laser_tilt_mount_link"/>
+     <child link="laser_tilt_link"/>
      <limit effort="30" lower="-2.6" upper="2.6" velocity="2.0"/>
 	 <dynamics damping="100"/>
   </joint>
@@ -315,7 +338,7 @@
 	<motorTorqueConstant>1</motorTorqueConstant>
   </transmission>	
   
-  <link name="hokuyo_frontal_laser_rotation_link">
+  <link name="laser_tilt_link">
      <visual>
        <origin xyz="0 0 0" rpy="0 0 0" />
        <geometry>
@@ -340,7 +363,7 @@
   <joint name="hokuyo_frontal_laser_joint" type="fixed">
      <axis xyz="0 1 0" />
      <origin xyz="0.066 0 0.0"/>
-     <parent link="hokuyo_frontal_laser_rotation_link"/>
+     <parent link="laser_tilt_link"/>
      <child link="hokuyo_frontal_laser_link"/>
   </joint>
   <!-- Hokuyo Laser -->
