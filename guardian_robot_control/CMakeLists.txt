@@ -97,6 +97,9 @@ target_link_libraries(guardian_robot_control
    ${catkin_LIBRARIES}
  )
 
+add_dependencies(guardian_robot_control ${catkin_EXPORTED_TARGETS})
+
+
 #############
 ## Install ##
 #############
