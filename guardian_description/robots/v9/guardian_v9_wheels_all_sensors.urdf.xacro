@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="guardian" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+	
+	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+
+	<!-- -->
+	<xacro:include filename="$(find guardian_description)/urdf/v9/guardian.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/sensors/imu.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/sensors/gps.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/sensors/kinect.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/v9/guardian.gazebo.xacro" />
+
+	<!-- *************** -->
+	<!-- Robots Elements -->
+	<!-- *************** -->
+
+	<!-- Here we create the robot elements using the xacro:macros imported at the beggining of this file -->
+	<!-- Guardian wheels-->
+	<xacro:guardian_wheels/>
+	
+	<xacro:sensor_hokuyo_utm30lx name="hokuyo" parent="base_link">
+		<origin xyz="0.43171 0 0.29163" rpy="0 0 0"/>
+	</xacro:sensor_hokuyo_utm30lx>
+	
+	<xacro:sensor_imu name="imu" parent="base_link">
+		<origin xyz="-0.18 0.0 0.170" rpy="0 0 0"/>
+	</xacro:sensor_imu>
+  
+	<xacro:sensor_gps name="gps" parent="base_link">
+		<origin xyz="-0.22 0 0.275" rpy="0 0 0"/>
+	</xacro:sensor_gps>
+	
+	<xacro:sensor_kinect name="kinect" parent="base_link">
+		<origin xyz="0.450 0 0.139" rpy="0 0 0"/>
+	</xacro:sensor_kinect>
+	
+	
+	<xacro:gazebo_guardian_skid_steering broadcastOdomTF="1" namespace="/guardian"/>
+	<!-- Gazebo ros control pluggins -->
+	<xacro:ros_control namespace="/guardian"/>
+  
+</robot>
+

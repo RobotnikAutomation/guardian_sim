@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="guardian" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+	
+	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+
+	<!-- -->
+	<xacro:include filename="$(find guardian_description)/urdf/v9/guardian.urdf.xacro" />
+	<xacro:include filename="$(find guardian_description)/urdf/v9/guardian.gazebo.xacro" />
+
+	<!-- *************** -->
+	<!-- Robots Elements -->
+	<!-- *************** -->
+
+	<!-- Here we create the robot elements using the xacro:macros imported at the beggining of this file -->
+	<!-- Guardian wheels-->
+	<xacro:guardian_wheels/>
+	<xacro:gazebo_guardian_skid_steering broadcastOdomTF="false" namespace="/guardian"/>
+	<!-- Gazebo ros control pluggins -->
+	<xacro:ros_control namespace="/guardian"/>
+  
+</robot>
+

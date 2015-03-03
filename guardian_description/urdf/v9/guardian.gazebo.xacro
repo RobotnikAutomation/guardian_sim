@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- ros_control plugin -->
+  <xacro:macro name="ros_control" params="namespace">
+	  <gazebo>
+		<plugin name="ros_control" filename="libgazebo_ros_control.so">
+		   <robotNamespace>${namespace}</robotNamespace>
+		   <controlPeriod>0.002</controlPeriod>
+		   <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+		</plugin>
+	  </gazebo>
+  </xacro:macro>
+  
+  <xacro:macro name="gazebo_guardian_skid_steering" params="broadcastOdomTF namespace">
+	  
+		<gazebo>
+			<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+			<updateRate>100.0</updateRate>
+			<robotNamespace>${namespace}</robotNamespace>
+			<leftFrontJoint>joint_front_left_wheel</leftFrontJoint>  
+			<rightFrontJoint>joint_front_right_wheel</rightFrontJoint>
+			<leftRearJoint>joint_back_left_wheel</leftRearJoint>
+			<rightRearJoint>joint_back_right_wheel</rightRearJoint>
+			<wheelSeparation>0.6</wheelSeparation>
+			<wheelDiameter>0.300</wheelDiameter>
+			<robotBaseFrame>base_link</robotBaseFrame>
+			<torque>20</torque>
+			<topicName>cmd_vel</topicName>
+
+			<commandTopic>cmd_vel</commandTopic>
+			<odometryTopic>odom</odometryTopic>
+			<odometryFrame>odom</odometryFrame>
+			
+			<broadcastTF>${broadcastOdomTF}</broadcastTF>
+			<!-- broadcastTF>false</broadcastTF -->
+			</plugin>
+	  
+		</gazebo>
+		<gazebo reference="base_footprint">
+			<material>Gazebo/Green</material>
+		</gazebo>
+	  
+		<gazebo reference="base_link">
+			<material>Gazebo/Red</material>
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+	  
+		<gazebo reference="left_track">
+			<material>Gazebo/FlatBlack</material>
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+	  
+		<gazebo reference="right_track">
+			<material>Gazebo/FlatBlack</material>
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+		
+		 <gazebo reference="joint_back_left_wheel">
+			<mu1 value="2.5"/>
+			<mu2 value="0.9"/>
+			<fdir1 value="1 0 0"/>
+			<!-- kp>100000000.0</kp>
+			<kd>100.0</kd-->
+			<kp>10000.0</kp>
+			<kd>100.0</kd>
+			<maxVel>2.0</maxVel>
+
+			<material>Gazebo/Grey</material>
+			<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="joint_back_right_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="joint_front_left_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="joint_front_right_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+	  
+  </xacro:macro>
+  
+  <xacro:macro name="gazebo_guardian_wheels">
+
+	  <gazebo reference="base_footprint">
+		<material>Gazebo/Green</material>
+	  </gazebo>
+	  
+	  <gazebo reference="base_link">
+		<material>Gazebo/Red</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+	  
+	  <gazebo reference="left_track">
+		<material>Gazebo/FlatBlack</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+	  
+	  <gazebo reference="right_track">
+		<material>Gazebo/FlatBlack</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+	  
+	  <gazebo reference="back_left_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<!-- kp>100000000.0</kp>
+		<kd>100.0</kd-->
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+		<maxVel>2.0</maxVel>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="back_right_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="front_left_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+
+	  <gazebo reference="front_right_wheel">
+		<mu1 value="2.5"/>
+		<mu2 value="0.9"/>
+		<fdir1 value="1 0 0"/>
+		<maxVel>2.0</maxVel>
+		<kp>10000.0</kp>
+		<kd>100.0</kd>
+
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>false</turnGravityOff>
+	  </gazebo>
+  
+  </xacro:macro>
+  
+  
+</robot>
