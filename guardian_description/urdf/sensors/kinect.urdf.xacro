@@ -120,6 +120,11 @@
             <near>0.05</near>
             <far>8.0</far>
           </clip>
+	  <noise>
+	  	<type>gaussian</type>
+		<mean>0.0</mean>
+		<stddev>0.07</stddev>
+	  </noise>		
         </camera>
         <plugin name="kinect_cam_controller" filename="libgazebo_ros_openni_kinect.so">
           <cameraName>${name}</cameraName>

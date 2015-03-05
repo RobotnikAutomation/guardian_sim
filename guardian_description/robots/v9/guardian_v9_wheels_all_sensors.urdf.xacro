@@ -25,7 +25,7 @@
 	<xacro:guardian_wheels/>
 	
 	<xacro:sensor_hokuyo_utm30lx name="hokuyo" parent="base_link">
-		<origin xyz="0.43171 0 0.29163" rpy="0 0 0"/>
+		<origin xyz="0.44171 0 0.31163" rpy="0 0 0"/>
 	</xacro:sensor_hokuyo_utm30lx>
 	
 	<xacro:sensor_imu name="imu" parent="base_link">
@@ -43,7 +43,7 @@
 	
 	<xacro:gazebo_guardian_skid_steering broadcastOdomTF="1" namespace="/guardian"/>
 	<!-- Gazebo ros control pluggins -->
-	<xacro:ros_control namespace="/guardian"/>
+	<xacro:ros_control_guardian namespace="/guardian"/>
   
 </robot>
 
