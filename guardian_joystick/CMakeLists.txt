@@ -85,4 +85,4 @@ target_link_libraries(guardian_joystick
    ${catkin_LIBRARIES}
  )
 
-add_dependencies(guardian_joystick ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(guardian_joystick ${PROJECT_NAME}_generate_messages_cpp robotnik_msgs_generate_messages_cpp)
