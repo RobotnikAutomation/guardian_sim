@@ -23,7 +23,7 @@
 			<rightRearJoint>joint_back_right_wheel</rightRearJoint>
 			<wheelSeparation>0.6</wheelSeparation>
 			<wheelDiameter>0.300</wheelDiameter>
-			<robotBaseFrame>base_link</robotBaseFrame>
+			<robotBaseFrame>base_footprint</robotBaseFrame>
 			<torque>20</torque>
 			<topicName>cmd_vel</topicName>
 
@@ -32,7 +32,7 @@
 			<odometryFrame>odom</odometryFrame>
 			
 			<broadcastTF>${broadcastOdomTF}</broadcastTF>
-			<!-- broadcastTF>false</broadcastTF -->
+			<!-- broadcastTF>${broadcastOdomTF}</broadcastTF -->
 			</plugin>
 	  
 		</gazebo>

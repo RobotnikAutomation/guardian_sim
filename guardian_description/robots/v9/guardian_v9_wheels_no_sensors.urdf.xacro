@@ -19,7 +19,7 @@
 	<!-- Here we create the robot elements using the xacro:macros imported at the beggining of this file -->
 	<!-- Guardian wheels-->
 	<xacro:guardian_wheels/>
-	<xacro:gazebo_guardian_skid_steering broadcastOdomTF="false" namespace="/guardian"/>
+	<xacro:gazebo_guardian_skid_steering broadcastOdomTF="1" namespace="/guardian"/>
 	<!-- Gazebo ros control pluggins -->
 	<xacro:ros_control namespace="/guardian"/>
   
