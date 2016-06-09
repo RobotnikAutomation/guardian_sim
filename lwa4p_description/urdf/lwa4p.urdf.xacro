@@ -11,24 +11,24 @@
 	<property name="arm_4_ref" value="0" />
 	<property name="arm_5_ref" value="0" />
 	<property name="arm_6_ref" value="0" />
-	<xacro:property name="joint_1_upper_limit" value="2.967059678" /> <!-- 170º -->
-	<xacro:property name="joint_1_lower_limit" value="-2.967059678" /> <!-- -170º -->
-	<xacro:property name="joint_2_upper_limit" value="1.919862144" /> <!-- 110º -->
-	<xacro:property name="joint_2_lower_limit" value="-1.919862144" /> <!-- -110º -->
-	<xacro:property name="joint_3_upper_limit" value="2.705260294" /> <!-- 155º -->
-	<xacro:property name="joint_3_lower_limit" value="-2.705260294" /> <!-- -155º -->
-	<xacro:property name="joint_4_upper_limit" value="2.967059678" /> <!-- 170º -->
-	<xacro:property name="joint_4_lower_limit" value="-2.967059678" /> <!-- -170º -->
-	<xacro:property name="joint_5_upper_limit" value="2.51327408" /> <!-- 140º -->
-	<xacro:property name="joint_5_lower_limit" value="-2.51327408" /> <!-- -140º -->
-	<xacro:property name="joint_6_upper_limit" value="2.967059678" /> <!-- 170º -->
-	<xacro:property name="joint_6_lower_limit" value="-2.967059678" /> <!-- -170º -->
-	<xacro:property name="joint_1_max_vel" value="1.25663706144" /> <!-- 72º/s -->
-	<xacro:property name="joint_2_max_vel" value="1.25663706144" /> <!-- 72º/s -->
-	<xacro:property name="joint_3_max_vel" value="1.25663706144" /> <!-- 72º/s -->
-	<xacro:property name="joint_4_max_vel" value="1.25663706144" /> <!-- 72º/s -->	
-	<xacro:property name="joint_5_max_vel" value="1.57079632679" /> <!-- 90º/s -->	
-	<xacro:property name="joint_6_max_vel" value="1.57079632679" /> <!-- 90º/s -->
+	<xacro:property name="joint_1_upper_limit" value="2.967059678" /> <!-- 170 degrees -->
+	<xacro:property name="joint_1_lower_limit" value="-2.967059678" /> <!-- -170 degree s-->
+	<xacro:property name="joint_2_upper_limit" value="1.919862144" /> <!-- 110 degrees -->
+	<xacro:property name="joint_2_lower_limit" value="-1.919862144" /> <!-- -110 degrees -->
+	<xacro:property name="joint_3_upper_limit" value="2.705260294" /> <!-- 155 degrees -->
+	<xacro:property name="joint_3_lower_limit" value="-2.705260294" /> <!-- -155 degrees -->
+	<xacro:property name="joint_4_upper_limit" value="2.967059678" /> <!-- 170 degrees -->
+	<xacro:property name="joint_4_lower_limit" value="-2.967059678" /> <!-- -170 degrees -->
+	<xacro:property name="joint_5_upper_limit" value="2.51327408" /> <!-- 140 degrees -->
+	<xacro:property name="joint_5_lower_limit" value="-2.51327408" /> <!-- -140 degrees -->
+	<xacro:property name="joint_6_upper_limit" value="2.967059678" /> <!-- 170 degrees -->
+	<xacro:property name="joint_6_lower_limit" value="-2.967059678" /> <!-- -170 degrees -->
+	<xacro:property name="joint_1_max_vel" value="1.25663706144" /> <!-- 72 degrees/s -->
+	<xacro:property name="joint_2_max_vel" value="1.25663706144" /> <!-- 72 degrees/s -->
+	<xacro:property name="joint_3_max_vel" value="1.25663706144" /> <!-- 72 degrees/s -->
+	<xacro:property name="joint_4_max_vel" value="1.25663706144" /> <!-- 72 degrees/s -->	
+	<xacro:property name="joint_5_max_vel" value="1.57079632679" /> <!-- 90 degrees/s -->	
+	<xacro:property name="joint_6_max_vel" value="1.57079632679" /> <!-- 90degrees /s -->
 	
   <xacro:macro name="schunk_lwa4p" params="parent name *origin">
 
