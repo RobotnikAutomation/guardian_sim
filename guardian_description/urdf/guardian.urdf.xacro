@@ -23,13 +23,6 @@
   <xacro:property name="ptz_joint_damping" value="0.1" />
   <xacro:property name="ptz_mechanical_reduction" value="1.0" />
 
-  
-  <!-- Used for fixing robot to Gazebo 'base_link' -->
-  <!-- link name="world"/>
-  <joint name="fwf" type="planar">
-    <parent link="world"/>
-    <child link="base_footprint"/>
-  </joint -->
 
   <!-- BASE FOOTPRINT -->
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin,
@@ -70,13 +63,14 @@
     <visual>
        <origin xyz="0 0 0" rpy="0 0 0" />
        <geometry>
-	 <mesh filename="package://guardian_description/meshes/chassis/v6/chassisV6.dae"/>
+	 <mesh filename="package://guardian_description/meshes/chassis/v5/chassisV5_1.stl"/>
+	 <!--mesh filename="package://guardian_description/meshes/chassis/v6/chassisV6.dae"/-->
        </geometry>
     </visual>
     <collision>
        <origin xyz="0 0 0" rpy="0 0 0 " />
        <geometry>
-         <mesh filename="package://guardian_description/meshes/chassis/v6/chassisV6.dae"/>
+         <mesh filename="package://guardian_description/meshes/chassis/v5/chassisV5_1.stl"/>
        </geometry>
     </collision>     
   </link>
@@ -335,7 +329,7 @@
 
 
 	<!-- KINECT CAMERA -->
-  <joint name="camera_joint" type="fixed">
+  <!--joint name="camera_joint" type="fixed">
      <axis xyz="0 1 0" />
      <origin xyz="0.5 0 0.31"/>
      <parent link="base_link"/>
@@ -347,17 +341,17 @@
        <origin xyz="0 0 0" rpy="0 0 0" />
        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001" />
     </inertial>
-  </link>
+  </link-->
 
 
   <!-- HOKUYO REAR SENSOR -->
-  <joint name="hokuyo_laser_joint" type="fixed">
+  <!--joint name="hokuyo_laser_joint" type="fixed">
      <axis xyz="0 1 0" />
      <origin xyz="-0.43171 0 0.29163"/>
      <parent link="base_link"/>
      <child link="hokuyo_laser_link"/>
   </joint>
-  <!-- Hokuyo Laser -->
+
   <link name="hokuyo_laser_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -366,19 +360,12 @@
       </geometry>
     </collision>
 
-    <!-- visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://guardian_description/meshes/hokuyo-utm30-lx.dae"/>
-      </geometry>
-    </visual -->
-
     <inertial>
       <mass value="1e-5" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
-  </link>
+  </link-->
 
 
   <!-- IMU SENSOR -->
@@ -410,7 +397,7 @@
   </link>
 
   <!-- AXIS PTZ CAMERA WITH PAN AND TILT -->
-  <link name="camera_base_link">
+  <!--link name="camera_base_link">
      <inertial>
        <mass value="0.1" />
        <origin xyz="0 0 0" rpy="0 0 0" />
@@ -469,7 +456,7 @@
 	   <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>${ptz_mechanical_reduction}</mechanicalReduction>
      </actuator>
-  </transmission>
+  </transmission -->
 
 
 </robot>
